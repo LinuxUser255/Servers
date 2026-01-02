@@ -54,9 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('http://localhost:8000/health');
             const data = await response.json();
 
-            // Show popup alert
-            alert('✅ The Python Server is running on port 8000!');
-
             pythonContainer.innerHTML = `
             <div style="color: #fff; padding: 20px; background: #2a3f5f; border-radius: 8px;">
                 <h3>✅ The Python Server is running</h3>
@@ -65,9 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
              </div>
              `;
         } catch (error) {
-            // Show error popup
-            alert('❌ Python Server Not Running!\n\nMake sure the Python server is running on port 8000');
-
             pythonContainer.innerHTML = `
                 <div style="color: #ff6b6b; padding: 20px; background: #2a3f5f; border-radius: 8px;">
                     <h3>❌ Python Server Not Running</h3>
@@ -91,9 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Fetch health endpoint from Rust server (port 3000)
             const data = await api.get('/health');
 
-            // Show popup alert
-            alert('✅ The Rust Server is running on port 3000!');
-
             rustContainer.innerHTML = `
                 <div style="color: #fff; padding: 20px; background: #2a3f5f; border-radius: 8px;">
                     <h3>✅ The Rust Server is running</h3>
@@ -102,9 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
         } catch (error) {
-            // Show error popup
-            alert('❌ Rust Server Not Running!\n\nMake sure the Rust server is running on port 3000');
-
             rustContainer.innerHTML = `
                 <div style="color: #ff6b6b; padding: 20px; background: #2a3f5f; border-radius: 8px;">
                     <h3>❌ Rust Server Not Running</h3>
