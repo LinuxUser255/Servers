@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python vs Rust Server</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+         :root {
+            --bg-color: #19263b;
+            --button-bg-color: #007bff;
+            --button-text-color: #ffffff;
+            --border-color: #ddd;
+        }
+
+        /* Server list styling */
+        .server-list {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        /* Background color for index.html */
+        body {
+            background-color: var(--bg-color);
+            color: #ffffff;
+        }
+
+        /* Make all text white and centered */
+        h1, h2, h3, p, .subtitle {
+            color: #ffffff;
+            text-align: center;
+        }
+
+        /* Center the header */
+        header {
+            text-align: center;
+        }
+
+        /* Center the panels */
+        .panel {
+            text-align: center;
+        }
+
+        /* Button styling */
+        #click-me, #rust-button {
+            background-color: var(--button-bg-color);
+            color: var(--button-text-color);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            margin: 10px auto;
+        }
+
+        #click-me:hover, #rust-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
+        }
+
+        #click-me:active, #rust-button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0, 123, 255, 0.3);
+        }
+
+        #click-me:disabled, #rust-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Python vs Rust Server Comparison</h1>
+            <p class="subtitle">Test both servers and compare their responses</p>
+        </header>
+
+        <main>
+            <div class="panel">
+                <h2>Python Server (Port 8000)</h2>
+                <button id="click-me" class="btn-primary">Fetch Python Server</button>
+                <div id="servers-container"></div>
+            </div>
+
+            <div class="panel">
+                <h2>Rust Server (Port 3000)</h2>
+                <button id="rust-button" class="btn-primary">Fetch Rust Server</button>
+                <div id="rust-servers-container"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
