@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <style>
          :root {
-            --bg-color: #19263b;
+            --bg-color: #201E1E;
             --button-bg-color: #007bff;
             --button-text-color: #ffffff;
             --border-color: #ddd;
@@ -41,6 +41,12 @@
         /* Center the panels */
         .panel {
             text-align: center;
+        }
+
+        /* Override panel text alignment for JSON display */
+        .panel pre {
+            text-align: left !important;
+            white-space: pre !important;
         }
 
         /* Button styling */

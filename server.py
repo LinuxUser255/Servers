@@ -1,4 +1,3 @@
-
 import os
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
@@ -17,7 +16,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
             self.end_headers()
             with open('web/index.html', 'rb') as f:
                 self.wfile.write(f.read())
-        
+
         elif self.path == '/health':
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -29,7 +28,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
                 'port': 8000
             }
             self.wfile.write(json.dumps(response).encode())
-        
+
         elif self.path.startswith('/css/'):
             try:
                 file_path = 'web' + self.path
@@ -40,7 +39,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
                     self.wfile.write(f.read())
             except FileNotFoundError:
                 self.send_error(404, 'File not found')
-        
+
         elif self.path.startswith('/js/'):
             try:
                 file_path = 'web' + self.path
@@ -51,7 +50,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
                     self.wfile.write(f.read())
             except FileNotFoundError:
                 self.send_error(404, 'File not found')
-        
+
         else:
             self.send_error(404, 'File not found')
 
@@ -96,7 +95,7 @@ class SimpleHandler(BaseHTTPRequestHandler):
     def serve_static_file(self):
         """serve static files from the web directory"""
         try:
-            file_path = self.path[5:] # remove '/web/'
+            file_path = self.path[5:]  # remove '/web/'
             full_path = os.path.join(os.path.dirname(__file__), 'web', file_path)
 
             # determine the content type based on the file extension
@@ -117,8 +116,10 @@ class SimpleHandler(BaseHTTPRequestHandler):
         except FileNotFoundError:
             self.send_error(404, f"File not found: {self.path}")
 
-# Call it all with the main function and create the server object
+
+# main function called from main.py, and thus not to be run directly from here
 def main():
+    """Start the server and listen for incoming connections."""
     port = 8000
     # Create a Server object and bind it to the specified port number
     server = HTTPServer(('', port), SimpleHandler)
@@ -132,19 +133,5 @@ def main():
         print("\n\nServer stopped.")
         server.shutdown()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#if __name__ == '__main__':
+#    main()

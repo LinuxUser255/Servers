@@ -3,15 +3,15 @@
 
 /* === CSS Variables === */
 :root {
-    --bg-color: #19263b;
-    --bg-card: #16213e;
-    --bg-hover: #1f2b47;
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-    --button-bg: #007bff;
-    --button-hover: #0056b3;
-    --border-color: #ddd;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --bg-color: #2D2424;
+    --bg-card: #3a3a3a;
+    --bg-hover: #4a4a4a;
+    --text-primary: #e8e8e8;
+    --text-secondary: #9a9a9a;
+    --button-bg: #4a4a4a;
+    --button-hover: #5a5a5a;
+    --border-color: #404040;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     --radius: 8px;
 }
 
@@ -106,13 +106,13 @@ header .subtitle {
 #rust-button:hover {
     background-color: var(--button-hover);
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 #click-me:active,
 #rust-button:active {
     transform: translateY(-1px);
-    box-shadow: 0 3px 6px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 #click-me:disabled,

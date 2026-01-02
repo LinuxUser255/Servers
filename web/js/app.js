@@ -36,6 +36,19 @@ const api = {
     }
 };
 
+// Helper function to format JSON with syntax highlighting
+function formatJSON(data) {
+    const json = JSON.stringify(data, null, 2);
+    return json
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"([^"]+)":/g, '<span style="color: #9cdcfe;">"$1"</span>:')
+        .replace(/: "([^"]*)"/g, ': <span style="color: #ce9178;">"$1"</span>')
+        .replace(/: (\d+)/g, ': <span style="color: #b5cea8;">$1</span>')
+        .replace(/: (true|false|null)/g, ': <span style="color: #569cd6;">$1</span>');
+}
+
 // == Event Listeners ==
 document.addEventListener('DOMContentLoaded', () => {
     const pythonButton = document.getElementById('click-me');
@@ -55,15 +68,27 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             pythonContainer.innerHTML = `
-            <div style="color: #fff; padding: 20px; background: #2a3f5f; border-radius: 8px;">
-                <h3>✅ The Python Server is running</h3>
-                <p><strong>Status:</strong> ${data.status}</p>
-                <pre>${JSON.stringify(data, null, 2)}</pre>
+            <div style="color: #fff; padding: 20px; background: #3a3a3a; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+                <h3 style="margin-bottom: 15px;">✅ Python Server is Running</h3>
+                <p style="margin-bottom: 10px;"><strong>Status:</strong> ${data.status}</p>
+                <pre style="
+                    background: #1e1e1e;
+                    padding: 15px;
+                    border-radius: 6px;
+                    overflow-x: auto;
+                    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                    font-size: 14px;
+                    line-height: 1.5;
+                    margin: 0;
+                    border: 1px solid #404040;
+                    text-align: left;
+                    white-space: pre;
+                ">${formatJSON(data)}</pre>
              </div>
              `;
         } catch (error) {
             pythonContainer.innerHTML = `
-                <div style="color: #ff6b6b; padding: 20px; background: #2a3f5f; border-radius: 8px;">
+                <div style="color: #ff6b6b; padding: 20px; background: #3a3a3a; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
                     <h3>❌ Python Server Not Running</h3>
                     <p>${error.message}</p>
                     <p>Make sure the Python server is running on port 8000</p>
@@ -86,15 +111,27 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await api.get('/health');
 
             rustContainer.innerHTML = `
-                <div style="color: #fff; padding: 20px; background: #2a3f5f; border-radius: 8px;">
-                    <h3>✅ The Rust Server is running</h3>
-                    <p><strong>Status:</strong> ${data.status}</p>
-                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                <div style="color: #fff; padding: 20px; background: #3a3a3a; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+                    <h3 style="margin-bottom: 15px;">✅ Rust Server is Running</h3>
+                    <p style="margin-bottom: 10px;"><strong>Status:</strong> ${data.status}</p>
+                    <pre style="
+                        background: #1e1e1e;
+                        padding: 15px;
+                        border-radius: 6px;
+                        overflow-x: auto;
+                        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                        font-size: 14px;
+                        line-height: 1.5;
+                        margin: 0;
+                        border: 1px solid #404040;
+                        text-align: left;
+                        white-space: pre;
+                    ">${formatJSON(data)}</pre>
                 </div>
             `;
         } catch (error) {
             rustContainer.innerHTML = `
-                <div style="color: #ff6b6b; padding: 20px; background: #2a3f5f; border-radius: 8px;">
+                <div style="color: #ff6b6b; padding: 20px; background: #3a3a3a; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
                     <h3>❌ Rust Server Not Running</h3>
                     <p>${error.message}</p>
                     <p>Make sure the Rust server is running on port 3000</p>
