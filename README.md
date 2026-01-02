@@ -44,7 +44,6 @@ Servers/
 ### Prerequisites
 
 **For Python Server:**
-- 
 - Python 3.7+ (built-in modules only, no external dependencies)
 
 **For Rust Server:**
@@ -70,7 +69,7 @@ python main.py compare
 ## Server Implementations
 Both servers implement the same REST API with identical endpoints:
 
-## API Endpointsj
+## API Endpoints
 ```text
 
 API Endpoints
@@ -97,7 +96,6 @@ curl -X POST http://localhost:8000/api/create \
 
 <br>
 
-```markdown
 # File: /Users/chris/Projects/Servers/README.md
 # Servers: Python vs Rust HTTP Server Comparison
 
@@ -489,14 +487,3 @@ This project is for educational purposes. Use freely for learning and experiment
 **Happy Learning! 🚀**
 
 *Explore the differences, understand the trade-offs, and choose the right tool for your needs.*
-```
-
-This README provides a comprehensive overview of the project's purpose, structure, and educational value. It explains:
-
-1. **Why the project exists** - Educational comparison and practical learning
-2. **What it contains** - Both Python and Rust server implementations
-3. **How to use it** - Clear instructions for running and testing
-4. **When to use each** - Practical guidance on choosing between Python and Rust
-5. **Learning path** - Structured approach to understanding both implementations
-
-The document serves as both documentation and a learning guide for anyone interested in understanding the differences between Python and Rust for web server development.
