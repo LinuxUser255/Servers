@@ -472,6 +472,8 @@ This is an educational project. Feel free to:
 
 ## 📝 License
 
+**GPL-3.0 license**
+
 This project is for educational purposes. Use freely for learning and experimentation.
 
 ## 🎯 Next Steps
