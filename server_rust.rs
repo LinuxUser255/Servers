@@ -13,7 +13,10 @@ use tokio::fs;
 // Handling network addresses and ports
 use std::net::SocketAddr;
 
-// Data structures
+// ============================================================================
+// DATA STRUCTURES
+// ============================================================================
+
 #[derive(Serialize, Deserialize)]
 struct HealthResponse {
     status: String,
@@ -31,21 +34,9 @@ struct EchoResponse {
     echo: String,
 }
 
-// server the index.html file
-async fn serve_html() -> impl IntoResponse {
-    match fs::read_to_string("web/index.html").await {
-        Ok(content) => (
-            StatusCode::OK,
-            [(header::CONTENT_TYPE, "text/html")],
-            content,
-        ).into_response(),
-        Err(_) => (
-            StatusCode::NOT_FOUND,
-            "index.html not found",
-        ).into_response(),
-    }
-}
-
+// ============================================================================
+// API ENDPOINTS
+// ============================================================================
 
 // Health check endpoint with CORS
 async fn health() -> impl IntoResponse {
@@ -79,6 +70,25 @@ async fn echo(Json(payload): Json<EchoRequest>) -> impl IntoResponse {
         ],
         Json(response),
     )
+}
+
+// ============================================================================
+// STATIC FILE SERVING
+// ============================================================================
+
+// Serve the index.html file
+async fn serve_html() -> impl IntoResponse {
+    match fs::read_to_string("web/index.html").await {
+        Ok(content) => (
+            StatusCode::OK,
+            [(header::CONTENT_TYPE, "text/html")],
+            content,
+        ).into_response(),
+        Err(_) => (
+            StatusCode::NOT_FOUND,
+            "index.html not found",
+        ).into_response(),
+    }
 }
 
 // Serve CSS files
@@ -148,14 +158,20 @@ async fn serve_static(
     }
 }
 
+// ============================================================================
+// MAIN SERVER
+// ============================================================================
+
 // main does 4 things
 #[tokio::main] // main() async ~ similar to asyncio.run() in Python
 async fn main() {
-    // 1, create a router - like Flask's app.route() getting the endpoints
+    // 1. create a router - like Flask's app.route() getting the endpoints
     let app = Router::new()
-        .route("/", get(serve_html))
+        // API endpoints
         .route("/health", get(health))
         .route("/api/echo", post(echo))
+        // Static file serving
+        .route("/", get(serve_html))
         .route("/web/:filename", get(serve_static))
         .route("/css/:filename", get(serve_css))
         .route("/js/:filename", get(serve_js));
@@ -169,6 +185,6 @@ async fn main() {
     // 3. create and bind the server and listen for incoming connections
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
 
-    // start the server
+    // 4. start the server
     axum::serve(listener, app).await.unwrap();
 }
