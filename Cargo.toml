@@ -7,6 +7,10 @@ edition = "2021"
 name = "server_rust"
 path = "server_rust.rs"
 
+[[bin]]
+name = "server_rust_basic"
+path = "server_rust_basic.rs"
+
 [dependencies]
 tokio = { version = "1.35", features = ["full"] }
 axum = "0.7"

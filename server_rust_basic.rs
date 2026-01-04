@@ -1,8 +1,7 @@
-
 // ============================================================================
 // MINIMAL AXUM SERVER - BOILERPLATE
 // ============================================================================
-mod server_rust_basic;// use web framework components. (like http.server in python)
+
 use axum::{
     routing::{get, post},
     Json,
@@ -54,17 +53,17 @@ async fn echo(Json(input): Json<EchoInput>) -> Json<Message> {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // 1. Build router
+    // 1. Build the router
     let app = Router::new()
         .route("/", get(hello))
         .route("/health", get(health))
         .route("/echo", post(echo));
 
-    // 2. Set address
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
-    println!("Server running at http://localhost:3000");
+    // 2. Set the address
+    let addr = SocketAddr::from(([127, 0, 0, 1], 8080));
+    println!("Server is running at http://localhost:8080");
 
-    // 3. Start the server by creating a listener
+    // 3. Start the server
     let listener = tokio::net::TcpListener::bind(addr).await?;
     axum::serve(listener, app).await?;
 
